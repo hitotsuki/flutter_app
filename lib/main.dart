@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/next_page.dart';
 import 'package:flutter_app/map_page.dart';
 import 'package:flutter_app/question_page.dart';
+import 'package:flutter_app/lesson_page.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -83,6 +85,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => QuestionPage('ここは問い合わせページ'))
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.car_rental),
+                  title: Text('練習'),
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PracticePage())
                     );
                   },
                 ),
