@@ -3,7 +3,7 @@ import 'package:flutter_app/next_page.dart';
 import 'package:flutter_app/map_page.dart';
 import 'package:flutter_app/question_page.dart';
 import 'package:flutter_app/lesson_page.dart';
-
+import 'package:flutter_app/book_list_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,11 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Demo flutter',
+      title: 'Demo flutter-app',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
-
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -38,69 +36,73 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-
       _counter++;
     });
   }
+
   final myFocusNode = FocusNode();
   String name;
   final myController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: Container(
         width: double.infinity,
         child: ListView(
-              children: <Widget>[
-                ListTile(
-                  leading: Icon(Icons.map),
-                  title: Text('Map'),
-                  onTap: (){
-                    Navigator.push(
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.map),
+              title: Text('Map'),
+              onTap: () {
+                Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MapPage('mapページです'))
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.photo_album),
-                  title: Text('Album'),
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => NextPage('ここはAlbumページです'))
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.phone),
-                  title: Text('問い合わせ'),
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => QuestionPage('ここは問い合わせページ'))
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.car_rental),
-                  title: Text('練習'),
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => PracticePage())
-                    );
-                  },
-                ),
-              ],
+                    MaterialPageRoute(
+                        builder: (context) => MapPage('mapページです')));
+              },
             ),
+            ListTile(
+              leading: Icon(Icons.photo_album),
+              title: Text('Album'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NextPage('ここはAlbumページです')));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: Text('問い合わせ'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => QuestionPage('ここは問い合わせページ')));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.car_rental),
+              title: Text('練習'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LessonPage()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.car_rental),
+              title: Text('確認'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => BookListPage()));
+              },
+            ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }

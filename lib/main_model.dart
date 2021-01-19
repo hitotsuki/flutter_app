@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MainModel extends ChangeNotifier {
   String tukytext = 'tukyですよ';
   void ChangeTukyText(){
-    tukytext = 'tukyファイト！';
+    tukytext = 'tuky更新';
     notifyListeners();
   }
 }
