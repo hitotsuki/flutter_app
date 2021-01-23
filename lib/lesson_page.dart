@@ -9,27 +9,22 @@ class LessonPage extends StatelessWidget {
       create: (_) => MainModel(),
       child: Scaffold(
         appBar: AppBar(
-
           title: Text('練習用の画面'),
         ),
-        body: Consumer<MainModel>(
-          builder: (context, model, child) {
-            return Center(
-              child: Column(
-                  children: <Widget> [
-                    Text(model.tukytext),
-                    RaisedButton(
-                        child: Text('ボタン'),
-                        onPressed: () {
-                          // 画面遷移の実装をいれる
-                          model.ChangeTukyText();
-                        },
-                      ),
-                  ]
+        body: Consumer<MainModel>(builder: (context, model, child) {
+          return Center(
+            child: Column(children: <Widget>[
+              Text(model.tukytext),
+              RaisedButton(
+                child: Text('ボタン'),
+                onPressed: () {
+                  // 画面遷移の実装をいれる
+                  model.ChangeTukyText();
+                },
               ),
-            );
-          }
-        ),
+            ]),
+          );
+        }),
       ),
     );
   }

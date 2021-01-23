@@ -3,7 +3,7 @@ import 'package:flutter_app/next_page.dart';
 import 'package:flutter_app/map_page.dart';
 import 'package:flutter_app/question_page.dart';
 import 'package:flutter_app/lesson_page.dart';
-import 'package:flutter_app/book_list_page.dart';
+import 'package:flutter_app/book_list/book_list_page.dart';
 
 void main() {
   runApp(MyApp());
