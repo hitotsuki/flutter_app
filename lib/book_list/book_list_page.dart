@@ -11,7 +11,7 @@ class BookListPage extends StatelessWidget {
       create: (_) => BookListModel()..fetchBooks(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('連携確認'),
+          title: Text('メモ一覧'),
         ),
         body: Consumer<BookListModel>(
           builder: (context, model, child) {
@@ -19,6 +19,21 @@ class BookListPage extends StatelessWidget {
             final listTiles = books
                 .map((book) => ListTile(
                       title: Text(book.title),
+                      trailing: IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () async {
+                          //todo
+                          await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddBookPage(
+                                  book: book,
+                                ),
+                                fullscreenDialog: true,
+                              ));
+                          model.fetchBooks();
+                        },
+                      ),
                     ))
                 .toList();
             return ListView(
