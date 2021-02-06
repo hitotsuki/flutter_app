@@ -1,34 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MapPage extends StatelessWidget {
-  MapPage(this.name);
-  final String name;
-  @override
+//  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+//    final String token =
+//        'pk.eyJ1IjoiaGl0b3RzdWtpIiwiYSI6ImNrazZqcWx2dDAzZXEyem8wcmJsM3V1YWkifQ.3vYRW89OZ8zN2sOHzuX58A';
+//    final String style = 'mapbox://styles/hitotsuki/ckkbtp9k11k3t17quc9fc98fz';
 
-        title: Text('次の画面'),
-      ),
-      body: Container(
-        height: double.infinity,
-        color: Colors.blue,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget> [
-              Text(name),
-              Center(
-                child: RaisedButton(
-                  child: Text('前へ'),
-                  onPressed: () {
-                    // 画面遷移の実装をいれる
-                    Navigator.pop(context, 'tsuky戻りました');
-                  },
-                ),
-              ),
-            ]
-        ),
-      ),
-    );
+    return Scaffold(
+        appBar: AppBar(
+      title: Text('mappage'),
+    ));
   }
 }

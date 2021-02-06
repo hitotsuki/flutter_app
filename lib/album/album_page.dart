@@ -1,26 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/add_book/add_book_page.dart';
-import 'package:flutter_app/book_list/book_list_model.dart';
-import 'package:flutter_app/domain/book.dart';
+import 'package:flutter_app/add_album/add_album_page.dart';
+import 'package:flutter_app/domain/album.dart';
 import 'package:provider/provider.dart';
+import 'album_model.dart';
 
-class BookListPage extends StatelessWidget {
+class AlbumPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<BookListModel>(
-      create: (_) => BookListModel()..fetchBooks(),
+    return ChangeNotifierProvider<AlbumListModel>(
+      create: (_) => AlbumListModel()..fetchAlbums(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('メモ一覧'),
+          title: Text('アルバム一覧'),
         ),
-        body: Consumer<BookListModel>(
+        body: Consumer<AlbumListModel>(
           builder: (context, model, child) {
-            final books = model.books;
-            final listTiles = books
+            final albums = model.albums;
+            final listTiles = albums
                 .map(
-                  (book) => ListTile(
-                    title: Text(book.title),
+                  (album) => ListTile(
+                    leading: Image.network(album.imageURL),
+                    title: Text(album.title),
                     trailing: IconButton(
                       icon: Icon(Icons.edit),
                       onPressed: () async {
@@ -28,12 +29,12 @@ class BookListPage extends StatelessWidget {
                         await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => AddBookPage(
-                                book: book,
+                              builder: (context) => AddAlbumPage(
+                                album: album,
                               ),
                               fullscreenDialog: true,
                             ));
-                        model.fetchBooks();
+                        model.fetchAlbums();
                       },
                     ),
                     onLongPress: () async {
@@ -42,13 +43,13 @@ class BookListPage extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text('${book.title}を削除しますか？'),
+                            title: Text('${album.title}を削除しますか？'),
                             actions: <Widget>[
                               FlatButton(
                                 child: Text('OK'),
                                 onPressed: () async {
                                   //削除の動きを入れる
-                                  await deleteBook(context, model, book);
+                                  await deleteAlbum(context, model, album);
                                 },
                               ),
                             ],
@@ -65,17 +66,17 @@ class BookListPage extends StatelessWidget {
           },
         ),
         floatingActionButton:
-            Consumer<BookListModel>(builder: (context, model, child) {
+            Consumer<AlbumListModel>(builder: (context, model, child) {
           return FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () async {
               await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddBookPage(),
+                    builder: (context) => AddAlbumPage(),
                     fullscreenDialog: true,
                   ));
-              model.fetchBooks();
+              model.fetchAlbums();
             },
           );
         }),
@@ -84,13 +85,13 @@ class BookListPage extends StatelessWidget {
   }
 }
 
-Future deleteBook(
+Future deleteAlbum(
   BuildContext context,
-  BookListModel model,
-  Book book,
+  AlbumListModel model,
+  Album album,
 ) async {
   try {
-    await model.deleteBook(book);
+    await model.deleteAlbum(album);
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -108,7 +109,7 @@ Future deleteBook(
       },
     );
     Navigator.of(context).pop();
-    await model.fetchBooks();
+    await model.fetchAlbums();
   } catch (e) {
     showDialog(
       context: context,

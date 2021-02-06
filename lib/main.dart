@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/next_page.dart';
+import 'package:flutter_app/album/album_page.dart';
 import 'package:flutter_app/map_page.dart';
 import 'package:flutter_app/question_page.dart';
 import 'package:flutter_app/lesson_page.dart';
 import 'package:flutter_app/book_list/book_list_page.dart';
+import 'package:flutter_app/signup/signup_page.dart';
+
+import 'login/login_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,20 +61,16 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: Icon(Icons.map),
               title: Text('Map'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MapPage('mapページです')));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MapPage()));
               },
             ),
             ListTile(
               leading: Icon(Icons.photo_album),
               title: Text('Album'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => NextPage('ここはAlbumページです')));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AlbumPage()));
               },
             ),
             ListTile(
@@ -98,6 +97,22 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => BookListPage()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.car_rental),
+              title: Text('サインイン'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignUpPage()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.car_rental),
+              title: Text('ログイン'),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
               },
             ),
           ],
